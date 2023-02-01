@@ -1,0 +1,14 @@
+.DS_Store
+.idea
+.phpunit.result.cache
+build
+composer.lock
+coverage
+docs
+phpunit.xml
+testbench.yaml
+vendor
+node_modules
+protonemedia-laravel-splade-*.tgz
+app/bootstrap/ssr*
+app/storage/splade-temporary-file-uploads/*

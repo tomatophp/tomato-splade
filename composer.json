@@ -1,0 +1,80 @@
+{
+    "name": "tomatophp/tomato-splade",
+    "description": "Laravel Splade With my selected updates and components for Tomato PHP.",
+    "keywords": [
+        "protonemedia",
+        "laravel",
+        "laravel-splade"
+    ],
+    "homepage": "https://github.com/tomatophp/tomato-splade",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pascal Baljet",
+            "email": "pascal@protone.media",
+            "role": "Developer"
+        },
+        {
+            "name": "Fady Mondy",
+            "email": "info@3x1.io",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0 || ^8.1 || ^8.2",
+        "illuminate/contracts": "^9.28|^10.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^6.0",
+        "nunomaduro/larastan": "^2.0.1",
+        "orchestra/testbench": "^7.7|^8.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "conflict": {
+        "laravel/framework": "9.36.0|9.36.1|9.36.2"
+    },
+    "suggest": {
+        "kirschbaum-development/eloquent-power-joins": "Required to enable support sorting by (nested) relationships in Splade Tables (^2.6)",
+        "maatwebsite/excel": "Required to enable support exports in Splade Tables (^3.1)"
+    },
+    "autoload": {
+        "psr-4": {
+            "ProtoneMedia\\Splade\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ProtoneMedia\\Splade\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint",
+        "extract-transitions": "@php ExtractTransitionClasses.php"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ProtoneMedia\\Splade\\ServiceProvider"
+            ],
+            "aliases": {
+                "Animation": "ProtoneMedia\\Splade\\Facades\\Animation",
+                "SEO": "ProtoneMedia\\Splade\\Facades\\SEO",
+                "Splade": "ProtoneMedia\\Splade\\Facades\\Splade",
+                "Toast": "ProtoneMedia\\Splade\\Facades\\Toast"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
