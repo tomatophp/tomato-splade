@@ -1,6 +1,6 @@
 ![Screenshot](https://github.com/tomatophp/tomato-splade/blob/master/art/screenshot.png)
 
-# Laravel Splade
+# Tomato Splade
 
 Laravel Splade With my selected updates and components for Tomato PHP
 
