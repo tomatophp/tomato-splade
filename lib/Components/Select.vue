@@ -114,6 +114,7 @@ export default {
     },
 
     watch: {
+    watch: {
         /*
          * When the model value changes, and it's a new
          * section, apply it to the Choices instance.
