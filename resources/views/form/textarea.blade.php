@@ -13,7 +13,7 @@
             'v-model' => $vueModel(),
             'data-validation-key' => $validationKey(),
         ]) }}
-        />
+        ></textarea>
     </label>
 
     @includeWhen($help, 'splade::form.help', ['help' => $help])

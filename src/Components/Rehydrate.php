@@ -2,12 +2,13 @@
 
 namespace ProtoneMedia\Splade\Components;
 
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use ProtoneMedia\Splade\SpladeCore;
 
 class Rehydrate extends Component
 {
+    use PassesVueVariablesThrough;
+
     /**
      * Create a new component instance.
      *
@@ -15,11 +16,14 @@ class Rehydrate extends Component
      */
     public function __construct(
         public SpladeCore $splade,
-        public array|string $on = ''
+        public array|string $on = '',
+        public array|string $passthrough = ''
     ) {
         if (is_string($on)) {
             $this->on = Form::splitByComma($on);
         }
+
+        $this->passthrough = implode(',', Form::splitByComma($passthrough));
     }
 
     /**
@@ -29,7 +33,7 @@ class Rehydrate extends Component
      */
     public function render()
     {
-        $key = Str::random();
+        $key = $this->splade->newRehydrateComponentKey();
 
         return $this->splade->isRehydrateRequest()
             ? implode([
@@ -37,7 +41,7 @@ class Rehydrate extends Component
                 '{{ $slot }}',
                 '<!--END-SPLADE-REHYDRATE-' . $key . '-->',
             ]) : view('splade::functional.rehydrate', [
-                'name' => $this->splade->newRehydrateComponentKey(),
+                'name' => $key,
                 'on'   => $this->on,
             ]);
     }

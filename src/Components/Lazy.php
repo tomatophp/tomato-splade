@@ -2,12 +2,13 @@
 
 namespace ProtoneMedia\Splade\Components;
 
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use ProtoneMedia\Splade\SpladeCore;
 
 class Lazy extends Component
 {
+    use PassesVueVariablesThrough;
+
     /**
      * Create a new component instance.
      *
@@ -15,8 +16,10 @@ class Lazy extends Component
      */
     public function __construct(
         public SpladeCore $splade,
-        public string $show = ''
+        public string $show = '',
+        public array|string $passthrough = ''
     ) {
+        $this->passthrough = implode(',', Form::splitByComma($passthrough));
     }
 
     /**
@@ -26,7 +29,7 @@ class Lazy extends Component
      */
     public function render()
     {
-        $key = Str::random();
+        $key = $this->splade->newLazyComponentKey();
 
         return $this->splade->isLazyRequest()
             ? implode([
@@ -34,7 +37,7 @@ class Lazy extends Component
                 '{{ $slot }}',
                 '<!--END-SPLADE-LAZY-' . $key . '-->',
             ]) : view('splade::functional.lazy', [
-                'name' => $this->splade->newLazyComponentKey(),
+                'name' => $key,
             ]);
     }
 }
