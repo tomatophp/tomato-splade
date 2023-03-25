@@ -333,7 +333,7 @@ class SpladeQueryBuilder extends SpladeTable
      *
      * @return void
      */
-    public function beforeRender()
+    public function beforeRender(): void
     {
         if (!$this->builder instanceof SpatieQueryBuilder) {
             $this->applyFilters();
