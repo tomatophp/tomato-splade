@@ -17,22 +17,26 @@
                 @includeUnless($searchInput->key === 'global', 'splade::table.search-row')
             @endforeach
 
-            <x-splade-component is="table-wrapper">
-                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-700">
-                    @unless($headless)
-                        @isset($head)
-                            {{ $head }}
-                        @elseif(count($table->resource))
-                            @include('splade::table.head')
-                        @endisset
-                    @endunless
+            <x-splade-component is="table-wrapper" :customBody="$customBody">
+                @if($customBody)
+                  @include($customBodyView)
+                @else
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-700">
+                        @unless($headless)
+                            @isset($head)
+                                {{ $head }}
+                            @elseif(count($table->resource))
+                                @include('splade::table.head')
+                            @endisset
+                        @endunless
 
-                    @isset($body)
-                        {{ $body }}
-                    @else
-                        @include('splade::table.body')
-                    @endisset
-                </table>
+                        @isset($body)
+                            {{ $body }}
+                        @else
+                            @include('splade::table.body')
+                        @endisset
+                    </table>
+                @endif
             </x-splade-component>
 
             @if($showPaginator())

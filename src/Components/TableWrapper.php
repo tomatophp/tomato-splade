@@ -6,6 +6,10 @@ use Illuminate\View\Component;
 
 class TableWrapper extends Component
 {
+    public function __construct(
+        public bool $customBody = false,
+    ) {
+    }
     /**
      * Get the view / contents that represent the component.
      *

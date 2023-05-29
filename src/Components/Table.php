@@ -23,6 +23,8 @@ class Table extends Component
         public bool $headless = false,
         public string $scope = 'table',
         public ?int $searchDebounce = null,
+        public bool $customBody = false,
+        public ?string $customBodyView = null,
     ) {
         $for = is_string($for) ? app($for) : $for;
 
