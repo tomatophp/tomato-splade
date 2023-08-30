@@ -8,7 +8,7 @@
     <label class="block">
         @includeWhen($label, 'splade::form.label', ['label' => $label])
 
-        <div class="flex rounded-md border border-gray-300 dark:border-gray-700 shadow-sm dark:text-white ">
+        <div class="flex rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm dark:text-white ">
             @if($prepend)
                 <span :class="{ 'opacity-50': inputScope.disabled && @json(!$alwaysEnablePrepend) }" class="inline-flex items-center px-3 rounded-l-md border border-t-0 border-b-0 border-l-0 border-gray-300 bg-gray-50 text-gray-50 dark:text-white">
                     {!! $prepend !!}
@@ -16,11 +16,16 @@
             @endif
 
             <input {{ $attributes->except(['v-if', 'v-show', 'v-for', 'class'])->class([
-                'block w-full border-0 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed dark:text-white dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400' => true,
-                'rounded-md' => !$append && !$prepend,
+                'fi-input block w-full border-none bg-transparent py-1.5 text-base text-gray-950 outline-none transition duration-75' => true,
+                'placeholder:text-gray-400  disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)]',
+                'disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500',
+                'dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)]',
+                'dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 ps-3 pe-3',
+                'focus:ring-2 ring-primary-500 focus:ring-2 focus:ring-primary-500',
+                'rounded-lg' => !$append && !$prepend,
                 'min-w-0 flex-1 rounded-none' => $append || $prepend,
-                'rounded-l-md' => $append && !$prepend,
-                'rounded-r-md' => !$append && $prepend,
+                'rounded-l-lg' => $append && !$prepend,
+                'rounded-r-lg' => !$append && $prepend,
             ])->merge([
                 'name' => $name,
                 'type' => $type,
