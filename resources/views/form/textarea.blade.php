@@ -6,14 +6,22 @@
     <label class="block">
         @includeWhen($label, 'splade::form.label', ['label' => $label])
 
-        <textarea {{ $attributes->except(['v-if', 'v-show', 'class', 'autosize'])->class(
-            'block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400 '
-        )->merge([
+        <div class="flex rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm dark:text-white" >
+            <textarea {{ $attributes->except(['v-if', 'v-show', 'class', 'autosize'])->class([
+                'fi-input block w-full border-none bg-transparent py-1.5 text-base text-gray-950 outline-none transition duration-75' => true,
+                'fi-input block w-full border-none bg-transparent py-1.5 text-base text-gray-950 outline-none transition duration-75' => true,
+                'placeholder:text-gray-400  disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)]',
+                'disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500',
+                'dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)]',
+                'dark:disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.500)] sm:text-sm sm:leading-6 ps-3 pe-3',
+                'focus:ring-2 ring-primary-500 focus:ring-2 focus:ring-primary-500 rounded-lg',
+             ])->merge([
             'name' => $name,
             'v-model' => $vueModel(),
             'data-validation-key' => $validationKey(),
         ]) }}
         ></textarea>
+        </div>
     </label>
 
     @includeWhen($help, 'splade::form.help', ['help' => $help])
