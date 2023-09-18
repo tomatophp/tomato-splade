@@ -13,11 +13,16 @@ class Filter implements Arrayable
     public function __construct(
         public string $key,
         public string $label,
-        public array $options,
-        public ?string $value,
-        public bool $noFilterOption,
-        public string $noFilterOptionLabel,
-        public string $type
+        public ?array $options=[],
+        public ?string $value=null,
+        public ?bool $noFilterOption=false,
+        public ?string $noFilterOptionLabel=null,
+        public ?string $type='select',
+        public ?string $option_label=null,
+        public ?string $option_value=null,
+        public ?string $remote_url=null,
+        public ?string $remote_root=null,
+        public bool $mutli=false,
     ) {
     }
 
@@ -33,7 +38,12 @@ class Filter implements Arrayable
             $this->value,
             $this->noFilterOption,
             $this->noFilterOptionLabel,
-            $this->type
+            $this->type,
+            $this->option_label,
+            $this->option_value,
+            $this->remote_url,
+            $this->remote_root,
+            $this->mutli,
         );
     }
 
@@ -68,11 +78,16 @@ class Filter implements Arrayable
     public function toArray()
     {
         return [
-            'key'     => $this->key,
-            'label'   => $this->label,
-            'options' => $this->options(),
-            'value'   => $this->value,
-            'type'    => $this->type,
+            'key'            => $this->key,
+            'label'          => $this->label,
+            'options'        => $this->options(),
+            'value'          => $this->value,
+            'type'           => $this->type,
+            'option_label'   => $this->option_label,
+            'option_value'   => $this->option_value,
+            'remote_url'     => $this->remote_url,
+            'remote_root'    => $this->remote_root,
+            'mutli'          => $this->mutli,
         ];
     }
 }

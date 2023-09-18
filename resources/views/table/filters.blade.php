@@ -15,28 +15,63 @@
       aria-orientation="horizontal"
       aria-labelledby="filter-menu"
     >
-        @foreach($table->filters() as $filter)
-            <div>
-                <h3 class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-700 p-3">
-                    {{ $filter->label }}
-                </h3>
+        <x-splade-form method="GET" :action="url()->current()" :default="['filter' => request()->get('filter') ?: []]">
+            @foreach($table->filters() as $filter)
+                <div>
+                    <h3 class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-700 p-3">
+                        {{ $filter->label }}
+                    </h3>
 
-                <div class="p-2 dark:bg-gray-600">
-                    @if($filter->type === 'select')
-                        <select
-                            name="filter-{{ $filter->key }}"
-                            class="block focus:ring-indigo-500 focus:border-indigo-500 w-full shadow-sm text-sm dark:bg-gray-700 border-gray-300 rounded-md"
-                            @change="table.updateQuery('filter[{{ $filter->key }}]', $event.target.value)"
-                        >
-                            @foreach($filter->options() as $optionKey => $option)
-                                <option @selected($filter->hasValue() && $filter->value == $optionKey) value="{{ $optionKey }}">
-                                    {{ $option }}
-                                </option>
-                            @endforeach
-                        </select>
-                    @endif
+                    <div class="p-2 dark:bg-gray-600" style="width: 200px !important;">
+                        @if($filter->type === 'select')
+                            <x-splade-select
+                                choices
+                                name="filter[{{ $filter->key }}]"
+                                placeholder="{{$filter->label}}"
+                                option-label="{{$filter->option_label}}"
+                                option-value="{{$filter->option_value}}"
+                                remote-url="{{$filter->remote_url}}"
+                                remote-root="{{$filter->remote_root}}"
+                                multiple="{{$filter->mutli}}"
+                                @change="table.updateQuery('filter[{{ $filter->key }}]', $event.target.value)"
+                            >
+                                @foreach($filter->options() as $optionKey => $option)
+                                    <option @selected($filter->hasValue() && $filter->value == $optionKey) value="{{ $optionKey }}">
+                                        {{ $option }}
+                                    </option>
+                                @endforeach
+                            </x-splade-select>
+                        @endif
+                        @if($filter->type === 'bool')
+                            <label class="relative inline-flex items-center cursor-pointer" @click.prevent="table.updateQuery('filter[{{ $filter->key }}]', {{request()->get('filter') && isset(request()->get('filter')[$filter->key]) && request()->get('filter')[$filter->key] == '1' ? '0' : '1'}} )">
+                                <input type="checkbox" @if(request()->get('filter') && isset(request()->get('filter')[$filter->key]) && request()->get('filter')[$filter->key] == '1') checked="1" @endif class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200
+                                peer-focus:outline-none
+                                peer-focus:ring-4
+                                peer-focus:ring-primary-300
+                                dark:peer-focus:ring-primary-800
+                                rounded-full peer
+                                dark:bg-gray-700
+                                peer-checked:after:translate-x-full
+                                peer-checked:after:border-white
+                                after:content-['']
+                                after:absolute
+                                after:top-[2px]
+                                after:left-[2px]
+                                after:bg-white
+                                after:border-gray-300
+                                after:border after:rounded-full
+                                after:h-5
+                                after:w-5
+                                after:transition-all
+                                dark:border-gray-600
+                                peer-checked:bg-blue-600"
+                                ></div>
+                            </label>
+                        @endif
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </x-splade-form>
     </div>
 </x-splade-component>
