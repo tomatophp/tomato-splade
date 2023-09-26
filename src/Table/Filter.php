@@ -23,7 +23,7 @@ class Filter implements Arrayable
         public ?string $remote_url=null,
         public ?string $remote_root=null,
         public bool $mutli=false,
-        public int $paginated=10,
+        public string|int|null $paginated=null,
         public string $queryBy='search',
     ) {
     }

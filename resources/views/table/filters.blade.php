@@ -22,27 +22,37 @@
                         {{ $filter->label }}
                     </h3>
 
-                    <div class="p-2 dark:bg-gray-600" style="width: 200px !important;">
+                    <div class="p-2 dark:bg-gray-600" style="width: 300px !important;">
                         @if($filter->type === 'select')
-                            <x-tomato-admin-select
-                                name="filter[{{ $filter->key }}]"
-                                placeholder="{!! $filter->label !!}"
-                                option-label="{{$filter->option_label}}"
-                                option-value="{{$filter->option_value}}"
-                                remote-url="{!! $filter->remote_url !!}"
-                                remote-root="{{$filter->remote_root}}"
-                                paginated="{{$filter->paginated}}"
-                                query-by="{{$filter->queryBy}}"
-                                type="relation"
-                                multiple="{{$filter->mutli}}"
-                                @select="table.updateQuery('filter[{{ $filter->key }}]', $event)"
-                            >
-                                @foreach($filter->options() as $optionKey => $option)
-                                    <option @selected($filter->hasValue() && $filter->value == $optionKey) value="{{ $optionKey }}">
-                                        {{ $option }}
-                                    </option>
-                                @endforeach
-                            </x-tomato-admin-select>
+                            @if($filter->remote_url)
+                                <x-tomato-admin-select
+                                    name="filter[{{ $filter->key }}]"
+                                    placeholder="{!! $filter->label !!}"
+                                    option-label="{{$filter->option_label}}"
+                                    option-value="{{$filter->option_value}}"
+                                    remote-url="{!! $filter->remote_url !!}"
+                                    remote-root="{{$filter->remote_root}}"
+                                    paginated="{!! $filter->paginated !!}"
+                                    query-by="{{$filter->queryBy}}"
+                                    type="relation"
+                                    multiple="{{$filter->mutli}}"
+                                    @select="table.updateQuery('filter[{{ $filter->key }}]', $event)"
+                                />
+                            @else
+                                <x-splade-select
+                                    choices
+                                    name="filter[{{ $filter->key }}]"
+                                    placeholder="{!! $filter->label !!}"
+                                    multiple="{{$filter->mutli}}"
+                                    @change="table.updateQuery('filter[{{ $filter->key }}]', $event.target.value)"
+                                >
+                                    @foreach($filter->options() as $optionKey => $option)
+                                        <option @selected($filter->hasValue() && $filter->value == $optionKey) value="{{ $optionKey }}">
+                                            {{ $option }}
+                                        </option>
+                                    @endforeach
+                                </x-splade-select>
+                            @endif
                         @endif
                         @if($filter->type === 'bool')
                             <label class="relative inline-flex items-center cursor-pointer" @click.prevent="table.updateQuery('filter[{{ $filter->key }}]', {{request()->get('filter') && isset(request()->get('filter')[$filter->key]) && request()->get('filter')[$filter->key] == '1' ? '0' : '1'}} )">
