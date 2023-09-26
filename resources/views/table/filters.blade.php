@@ -27,10 +27,10 @@
                             <x-splade-select
                                 choices
                                 name="filter[{{ $filter->key }}]"
-                                placeholder="{{$filter->label}}"
+                                placeholder="{!! $filter->label !!}"
                                 option-label="{{$filter->option_label}}"
                                 option-value="{{$filter->option_value}}"
-                                remote-url="{{$filter->remote_url}}"
+                                remote-url="{!! $filter->remote_url !!}"
                                 remote-root="{{$filter->remote_root}}"
                                 multiple="{{$filter->mutli}}"
                                 @change="table.updateQuery('filter[{{ $filter->key }}]', $event.target.value)"
