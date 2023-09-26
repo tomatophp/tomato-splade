@@ -23,6 +23,8 @@ class Filter implements Arrayable
         public ?string $remote_url=null,
         public ?string $remote_root=null,
         public bool $mutli=false,
+        public int $paginated=10,
+        public string $queryBy='search',
     ) {
     }
 
@@ -44,6 +46,8 @@ class Filter implements Arrayable
             $this->remote_url,
             $this->remote_root,
             $this->mutli,
+            $this->paginated,
+            $this->queryBy,
         );
     }
 
@@ -88,6 +92,8 @@ class Filter implements Arrayable
             'remote_url'     => $this->remote_url,
             'remote_root'    => $this->remote_root,
             'mutli'          => $this->mutli,
+            'paginated'          => $this->paginated,
+            'queryBy'          => $this->queryBy,
         ];
     }
 }

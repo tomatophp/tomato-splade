@@ -26,6 +26,8 @@ trait HasFilters
         ?string $remote_url=null,
         ?string $remote_root='data',
         bool $mutli=false,
+        int $paginated=10,
+        string $queryBy='search',
     ): self {
         $this->filters = $this->filters->reject(function (Filter $filter) use ($key) {
             return $filter->key === $key;
