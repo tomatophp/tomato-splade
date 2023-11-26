@@ -54,6 +54,14 @@
                     {{ $export->label }}
                 </a>
             @endforeach
+
+            @if(isset($actions))
+                <h3 class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-700 px-4 py-2 border-b dark:border-gray-500">
+                    {{ __('Actions') }}
+                </h3>
+                {!! $actions !!}
+            @endif
+
         </div>
     </div>
 </x-splade-component>
