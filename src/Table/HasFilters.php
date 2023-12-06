@@ -72,6 +72,24 @@ trait HasFilters
         return $this;
     }
 
+
+    /**
+     * Add a select filter to the query builder.
+     *
+     * @return $this
+     */
+    public function dateFilter(): self {
+        $this->filters = $this->filters->reject(function (Filter $filter) {
+            return $filter->key === "date";
+        })->push(new Filter(
+            key: "created_at",
+            label: __('Date'),
+            type: 'date'
+        ))->values();
+
+        return $this;
+    }
+
     /**
      * Returns a collection with all filters, and applies
      * the data from the request query on each of them.

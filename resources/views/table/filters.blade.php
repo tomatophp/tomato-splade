@@ -81,6 +81,15 @@
                                 ></div>
                             </label>
                         @endif
+                        @if($filter->type === 'date')
+                                <x-splade-input
+                                    date
+                                    range
+                                    name="filter[{{ $filter->key }}]"
+                                    placeholder="{{__('Date Range')}}"
+                                    @change="$event.target.value.includes('to') ? table.updateQuery('filter[{{ $filter->key }}]', $event.target.value) : null"
+                                />
+                        @endif
                     </div>
                 </div>
             @endforeach

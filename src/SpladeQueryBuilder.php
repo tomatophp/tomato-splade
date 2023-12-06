@@ -2,6 +2,7 @@
 
 namespace ProtoneMedia\Splade;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\MySqlConnection;
 use Illuminate\Database\PostgresConnection;
@@ -248,7 +249,25 @@ class SpladeQueryBuilder extends SpladeTable
         $this->parseTerms(false);
 
         $this->filters()->filter->hasValue()->each(
-            fn (Filter $filter) => $this->applyConstraint([$filter->key => SearchInput::EXACT], $filter->value)
+            function (Filter $filter){
+                if($filter->type === 'date'){
+                    $exploadDateRange = explode(' to ', request()->get('filter')['created_at']);
+                    $from = "";
+                    $to = "";
+                    if(Carbon::parse($exploadDateRange[0])->isAfter(Carbon::parse($exploadDateRange[1]))){
+                        $from = Carbon::parse($exploadDateRange[1])->toDateString();
+                        $to = Carbon::parse($exploadDateRange[0])->toDateString();
+                    }
+                    else {
+                        $from = Carbon::parse($exploadDateRange[0])->toDateString();
+                        $to = Carbon::parse($exploadDateRange[1])->toDateString();
+                    }
+                    $this->builder->whereBetween(\DB::raw('DATE(created_at)') ,[$from,$to]);
+                }
+                else {
+                    return $this->applyConstraint([$filter->key => SearchInput::EXACT], $filter->value);
+                }
+            }
         );
 
         $this->ignoreCase($ignoreCaseSetting);
