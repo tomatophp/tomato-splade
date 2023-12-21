@@ -23,12 +23,12 @@
                 'sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl': modal.maxWidth == '7xl'
             }">
                 <x-splade-component is="dialog" panel dusk="modal-dialog">
-                    <div {{ $attributes->class('bg-white dark:bg-gray-800 p-6 rounded-xl relative') }}>
-                        <div class="flex justify-between">
-                            <div class=" fi-modal-heading text-base font-semibold leading-6 text-gray-950 dark:text-white">
+                    <div {{ $attributes->class('bg-white dark:bg-gray-800 rounded-xl relative') }}>
+                        <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 py-4 px-6 rounded-t-xl">
+                            <div class="flex flex-col items-center justifiy-center fi-modal-heading text-base font-semibold leading-6 text-gray-950 dark:text-white">
                                 {{$title??null}}
                             </div>
-                            <div v-if="modal.closeButton">
+                            <div v-if="modal.closeButton" class="flex flex-col items-center justifiy-center">
                                 <button dusk="close-modal-button" @click="modal.close" type="button" class="text-gray-400 hover:text-gray-500">
                                     <span class="sr-only">Close</span>
                                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -37,7 +37,9 @@
                                 </button>
                             </div>
                         </div>
-                        {{ $slot }}
+                        <div class="p-6">
+                            {{ $slot }}
+                        </div>
                     </div>
                 </x-splade-component>
             </x-splade-component>
