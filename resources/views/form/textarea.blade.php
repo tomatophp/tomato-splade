@@ -6,7 +6,7 @@
     <label class="block">
         @includeWhen($label, 'splade::form.label', ['label' => $label])
 
-        <div class="flex rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm dark:text-white" >
+        <div class="flex rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm dark:text-white" >
             <textarea {{ $attributes->except(['v-if', 'v-show', 'class', 'autosize'])->class([
                 'fi-input block w-full border-none bg-transparent py-1.5 text-base text-gray-950 outline-none transition duration-75' => true,
                 'fi-input block w-full border-none bg-transparent py-1.5 text-base text-gray-950 outline-none transition duration-75' => true,

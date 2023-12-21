@@ -9,7 +9,7 @@
         @foreach($table->columns() as $column)
             <th
                 v-show="table.columnIsVisible(@js($column->key))"
-                class="@if($loop->first && $hasBulkActions) pr-6 @else px-6 @endif py-3 text-left text-xs font-medium tracking-wide text-gray-500 dark:text-white {{ $column->classes }}"
+                class="@if($loop->first && $hasBulkActions) pr-6 @else px-6 @endif py-3 text-left rtl:text-right text-xs font-medium tracking-wide text-gray-500 dark:text-white {{ $column->classes }}"
             >
                 @if($column->sortable)
                     <Link keep-modal dusk="sort-{{ $column->key }}" href="{{ $sortBy($column) }}">

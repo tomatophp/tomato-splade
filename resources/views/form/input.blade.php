@@ -8,15 +8,15 @@
     <label class="block">
         @includeWhen($label, 'splade::form.label', ['label' => $label])
 
-        <div class="flex rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm dark:text-white ">
+        <div class="flex rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm dark:text-white ">
             @if($prepend)
-                <span :class="{ 'opacity-50': inputScope.disabled && @json(!$alwaysEnablePrepend) }" class="inline-flex items-center px-3 rounded-l-md border border-t-0 border-b-0 border-l-0 border-gray-300 bg-gray-50 text-gray-50 dark:text-white">
+                <span :class="{ 'opacity-50': inputScope.disabled && @json(!$alwaysEnablePrepend) }" class="inline-flex items-center px-3 rounded-l-md border border-t-0 border-b-0 border-l-0 border-gray-300 bg-gray-50 dark:bg-gray-700 dark:text-gray-200 text-gray-50 dark:text-white">
                     {!! $prepend !!}
                 </span>
             @endif
 
             <input {{ $attributes->except(['v-if', 'v-show', 'v-for', 'class'])->class([
-                'fi-input block w-full border-none bg-transparent py-1.5 text-base text-gray-950 outline-none transition duration-75' => true,
+                'fi-input block w-full border-none bg-white dark:bg-gray-800 py-1.5 text-base text-gray-950 outline-none transition duration-75' => true,
                 'placeholder:text-gray-400  disabled:text-gray-500 disabled:[-webkit-text-fill-color:theme(colors.gray.500)]',
                 'disabled:placeholder:[-webkit-text-fill-color:theme(colors.gray.400)] dark:text-white dark:placeholder:text-gray-500',
                 'dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:theme(colors.gray.400)]',
@@ -35,7 +35,7 @@
             />
 
             @if($append)
-                <span :class="{ 'opacity-50': inputScope.disabled && @json(!$alwaysEnableAppend) }" class="inline-flex items-center px-3 rounded-r-md border border-t-0 border-b-0 border-r-0 border-gray-300 bg-gray-50 text-gray-500 dark:text-white">
+                <span :class="{ 'opacity-50': inputScope.disabled && @json(!$alwaysEnableAppend) }" class="inline-flex items-center px-3 rounded-r-md border border-t-0 border-b-0 border-r-0 border-gray-300 bg-gray-50 dark:bg-gray-700 dark:text-gray-200 text-gray-500 dark:text-white">
                     {!! $append !!}
                 </span>
             @endif

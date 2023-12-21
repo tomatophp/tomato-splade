@@ -2,7 +2,7 @@
     <x-splade-component is="transition" appear show="toast.show">
         <x-splade-component is="transition" child after-leave="toast.emitDismiss">
             <div @class([
-                'px-4 py-3 pointer-events-auto shadow-md min-w-[340px] border rounded-md shadow-sm bg-white border-gray-200'
+                'px-4 py-3 pointer-events-auto shadow-md min-w-[340px] border rounded-md shadow-sm bg-white dark:bg-gray-900 dark:border-gray-800 border-gray-200'
                  ])>
                 <div class="flex items-center justify-between gap-8">
                     <div class="flex items-center gap-2">

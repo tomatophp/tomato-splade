@@ -5,9 +5,9 @@
         </svg>
     </x-slot:button>
 
-    <div class="min-w-max shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5">
+    <div class="min-w-max bg-white dark:bg-gray-700  overflow-hidden">
         <div class="flex flex-col">
-            <h3 v-if="table.hasSelectedItems" class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-600 px-4 py-2 border-b">
+            <h3 v-if="table.hasSelectedItems" class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-600 px-4 py-2 border-b border-gray-200">
                 <span v-if="table.totalSelectedItems == 1">
                     <span v-text="table.totalSelectedItems" /> {{ __('Item selected') }}
                 </span>
@@ -36,11 +36,11 @@
             @endforeach
 
             @if($table->hasExports() && $table->hasBulkActions())
-                <div v-if="table.hasSelectedItems" class="border-t w-full"></div>
+                <div v-if="table.hasSelectedItems" class="border-t border-gray-200 w-full"></div>
             @endif
 
             @if($table->hasExports())
-                <h3 class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-700 px-4 py-2 border-b dark:border-gray-500">
+                <h3 class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-800 px-4 py-2 border-b border-gray-200 dark:border-gray-600">
                     {{ __('Export results') }}
                 </h3>
             @endif
@@ -56,7 +56,7 @@
             @endforeach
 
             @if(isset($actions))
-                <h3 class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-700 px-4 py-2 border-b dark:border-gray-500">
+                <h3 class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-800 px-4 py-2 border-b border-gray-200 dark:border-gray-600">
                     {{ __('Actions') }}
                 </h3>
                 {!! $actions !!}

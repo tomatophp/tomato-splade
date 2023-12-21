@@ -18,7 +18,7 @@
         <x-splade-form method="GET" :action="url()->current()" :default="['filter' => request()->get('filter') ?: []]">
             @foreach($table->filters() as $filter)
                 <div>
-                    <h3 class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-700 p-3">
+                    <h3 class="text-xs uppercase tracking-wide bg-gray-100 dark:bg-gray-800 p-3">
                         {{ $filter->label }}
                     </h3>
 
@@ -71,7 +71,7 @@
                                 after:top-[2px]
                                 after:left-[2px]
                                 after:bg-white
-                                after:border-gray-300
+                                after:border-gray-200
                                 after:border after:rounded-full
                                 after:h-5
                                 after:w-5
