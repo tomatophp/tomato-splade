@@ -10,7 +10,7 @@
 
         <div class="flex rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm dark:text-white ">
             @if($prepend)
-                <span :class="{ 'opacity-50': inputScope.disabled && @json(!$alwaysEnablePrepend) }" class="inline-flex items-center px-3 rounded-l-md border border-t-0 border-b-0 border-l-0 border-gray-300 bg-gray-50 dark:bg-gray-700 dark:text-gray-200 text-gray-50 dark:text-white">
+                <span :class="{ 'opacity-50': inputScope.disabled && @json(!$alwaysEnablePrepend) }" class="inline-flex items-center px-3 ltr:rounded-l-md rtl:rounded-r-md border-t-0 border-b-0 border-l-0 border-gray-300 bg-gray-50 dark:bg-gray-700 dark:text-gray-200 text-gray-50 dark:text-white">
                     {!! $prepend !!}
                 </span>
             @endif
@@ -24,8 +24,8 @@
                 'focus:ring-2 ring-primary-500 focus:ring-2 focus:ring-primary-500',
                 'rounded-lg' => !$append && !$prepend,
                 'min-w-0 flex-1 rounded-none' => $append || $prepend,
-                'rounded-l-lg' => $append && !$prepend,
-                'rounded-r-lg' => !$append && $prepend,
+                'ltr:rounded-l-lg rtl:rounded-r-lg' => $append && !$prepend,
+                'ltr:rounded-r-lg rtl:rounded-l-lg' => !$append && $prepend,
             ])->merge([
                 'name' => $name,
                 'type' => $type,
@@ -35,7 +35,7 @@
             />
 
             @if($append)
-                <span :class="{ 'opacity-50': inputScope.disabled && @json(!$alwaysEnableAppend) }" class="inline-flex items-center px-3 rounded-r-md border border-t-0 border-b-0 border-r-0 border-gray-300 bg-gray-50 dark:bg-gray-700 dark:text-gray-200 text-gray-500 dark:text-white">
+                <span :class="{ 'opacity-50': inputScope.disabled && @json(!$alwaysEnableAppend) }" class="inline-flex items-center px-3 ltr:rounded-r-md rtl:rounded-l-md border-t-0 border-b-0 border-r-0 border-gray-300 bg-gray-50 dark:bg-gray-700 dark:text-gray-200 text-gray-500 dark:text-white">
                     {!! $append !!}
                 </span>
             @endif
