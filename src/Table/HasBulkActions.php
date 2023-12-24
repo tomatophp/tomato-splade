@@ -39,7 +39,7 @@ trait HasBulkActions
         bool|string $requirePassword = false,
         string $type = 'action',
         ?string $href = null,
-        string $style = "primary"
+        string $style = "danger"
     ): self {
         $key = count($this->bulkActions);
 
