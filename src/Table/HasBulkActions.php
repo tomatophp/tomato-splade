@@ -32,11 +32,14 @@ trait HasBulkActions
         callable $each = null,
         callable $before = null,
         callable $after = null,
-        bool|string $confirm = '',
+        bool|string $confirm = false,
         string $confirmText = '',
         string $confirmButton = '',
         string $cancelButton = '',
         bool|string $requirePassword = false,
+        string $type = 'action',
+        ?string $href = null,
+        string $style = "primary"
     ): self {
         $key = count($this->bulkActions);
 
@@ -54,6 +57,9 @@ trait HasBulkActions
             confirmButton: $confirmButton,
             cancelButton: $cancelButton,
             requirePassword: $requirePassword,
+            type: $type,
+            href: $href,
+            style: $style,
         );
 
         return $this;

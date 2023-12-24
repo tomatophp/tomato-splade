@@ -1,4 +1,4 @@
-<x-splade-component is="button-with-dropdown" dusk="columns-dropdown">
+<x-splade-component is="button-with-dropdown" dusk="columns-dropdown" class="w-full bg-white border border-gray-200 rounded-md shadow-sm px-2.5 sm:px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:hover:bg-gray-600  dark:bg-gray-700 dark:border-gray-600">
     <x-slot:button>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
             :class="{

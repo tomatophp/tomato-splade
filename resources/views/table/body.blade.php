@@ -1,4 +1,4 @@
-<tbody class="divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-800">
+<tbody class="divide-y divide-gray-100 dark:divide-gray-600 bg-white dark:bg-gray-800">
     @forelse($table->resource as $itemKey => $item)
         <tr
             :class="{
@@ -8,8 +8,8 @@
             }"
         >
             @if($hasBulkActions = $table->hasBulkActions())
-                <td width="64" class="text-xs px-6 py-4 align-middle">
-                    @php $itemPrimaryKey = $table->findPrimaryKey($item) @endphp
+                @php $itemPrimaryKey = $table->findPrimaryKey($item) @endphp
+                <td width="64" class="text-xs px-6 py-4 align-middle" :class="{'bg-gray-200': table.itemIsSelected(@js($itemPrimaryKey))}">
                     <div class="h-full">
                         <input
                             @change="(e) => table.setSelectedItem(@js($itemPrimaryKey), e.target.checked)"
@@ -30,7 +30,8 @@
                         @click="(event) => table.visit(@js($table->rowLinks->get($itemKey)), @js($table->rowLinkType), event)"
                     @endif
                     v-show="table.columnIsVisible(@js($column->key))"
-                    class="align-middle text-sm @if($loop->first && $hasBulkActions) pr-6 @else px-6 @endif py-4 @if($column->highlight) text-gray-900 dark:text-white font-medium text-left rtl:text-right @else text-gray-500 dark:text-gray-200 @endif @if($table->rowLinks->has($itemKey)) cursor-pointer @endif {{ $column->classes }}"
+                    :class="{'bg-gray-200': table.itemIsSelected(@js($itemPrimaryKey))}"
+                    class="whitespace-nowrap align-middle text-sm @if($loop->first && $hasBulkActions) pr-6 @else px-6 @endif py-4 @if($column->highlight) text-gray-900 dark:text-white font-medium text-left rtl:text-right @else text-gray-500 dark:text-gray-200 @endif @if($table->rowLinks->has($itemKey)) cursor-pointer @endif {{ $column->classes }}"
                 >
                     @isset(${'spladeTableCell' . $column->keyHash()})
                         {{ ${'spladeTableCell' . $column->keyHash()}($item, $itemKey) }}

@@ -18,7 +18,7 @@
 
     <template #default="dropdown">
         <x-splade-component :is="$teleport ? 'teleport' : 'slot'" to="body">
-            <div data-splade-dropdown-id="{{ $spladeId }}" class="absolute z-40">
+            <div data-splade-dropdown-id="{{ $spladeId }}" class="absolute z-10">
                 <x-splade-component is="transition" show="dropdown.opened">
                     {{ $slot }}
                 </x-splade-component>

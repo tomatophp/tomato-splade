@@ -34,6 +34,9 @@ class BulkAction
         public string $confirmText = '',
         public string $confirmButton = '',
         public string $cancelButton = '',
+        public string $type = "action",
+        public ?string $href = null,
+        public ?string $style = "primary",
         bool $requirePassword = false,
     ) {
         if ($requirePassword === true) {
