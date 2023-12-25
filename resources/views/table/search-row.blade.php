@@ -2,7 +2,7 @@
     v-show="@js($searchInput->value !== null) || table.isForcedVisible(@js($searchInput->key))"
     class="px-4 sm:px-0"
 >
-    <div class="flex rounded-md shadow-sm relative mt-3">
+    <div class="flex rounded-md shadow-sm relative my-4">
         <label
             for="{{ $searchInput->key }}"
             class="inline-flex items-center px-4 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"

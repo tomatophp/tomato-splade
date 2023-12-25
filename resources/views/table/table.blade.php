@@ -17,10 +17,14 @@
                 @includeUnless($searchInput->key === 'global', 'splade::table.search-row')
             @endforeach
 
+            @isset($header)
+                {{ $header }}
+            @endisset
+
             <x-splade-component is="table-wrapper" :customBody="$customBody">
 
             @if($customBody)
-                  <div v-if="table.hasSelectedItems" class="bg-gray-700 text-gray-100 border border-gray-600 rounded-lg mb-3">
+                  <div v-if="table.hasSelectedItems" class="bg-gray-700 text-gray-100 dark:bg-gray-900 dark:text-gray-100  border border-gray-600 dark:border-gray-800 rounded-lg mb-3">
                         <div colspan="{{ $table->columns()->count() + 1 }}">
                             <div class="flex justify-start gap-4 p-4">
                                 <div class="flex flex-col items-center justify-center font-medium">
@@ -74,16 +78,12 @@
                                         @endif
                                     @endforeach
                                 </div>
-
-                                {{--                @if($table->hasExports() && $table->hasBulkActions())--}}
-                                {{--                    <div v-if="table.hasSelectedItems" class="border-t border-gray-200 w-full"></div>--}}
-                                {{--                @endif--}}
                             </div>
                         </div>
                     </div>
                   @include($customBodyView)
                 @else
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-700">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-700 overflow-hidden">
                         @unless($headless)
                             @isset($head)
                                 {{ $head }}
@@ -92,7 +92,7 @@
                             @endisset
                         @endunless
 
-                        <tr v-if="table.hasSelectedItems" class="bg-gray-700 text-gray-100">
+                        <tr v-if="table.hasSelectedItems" class="bg-gray-700 dark:bg-gray-900 dark:bg-gray-200 text-gray-100">
                             <td colspan="{{ $table->columns()->count() + 1 }}">
                                 <div class="flex justify-start gap-4 p-4">
                                     <div class="flex flex-col items-center justify-center font-medium">
@@ -146,10 +146,6 @@
                                             @endif
                                         @endforeach
                                     </div>
-
-                                    {{--                @if($table->hasExports() && $table->hasBulkActions())--}}
-                                    {{--                    <div v-if="table.hasSelectedItems" class="border-t border-gray-200 w-full"></div>--}}
-                                    {{--                @endif--}}
                                 </div>
                             </td>
                         </tr>
