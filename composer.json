@@ -49,13 +49,6 @@
             "ProtoneMedia\\Splade\\Tests\\": "tests"
         }
     },
-    "scripts": {
-        "analyse": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint",
-        "extract-transitions": "@php ExtractTransitionClasses.php"
-    },
     "config": {
         "sort-packages": true,
         "allow-plugins": {

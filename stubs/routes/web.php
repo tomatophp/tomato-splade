@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['splade'])->group(function () {
-    Route::get('/', fn () => view('home'))->name('home');
-    Route::get('/docs', fn () => view('docs'))->name('docs');
+    Route::get('/', fn () => view('welcome'))->name('home');
 
     // Registers routes to support the interactive components...
     Route::spladeWithVueBridge();
