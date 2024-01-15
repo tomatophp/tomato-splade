@@ -78,12 +78,12 @@ trait HasFilters
      *
      * @return $this
      */
-    public function dateFilter(): self {
+    public function dateFilter(string $key =null, string $label =null): self {
         $this->filters = $this->filters->reject(function (Filter $filter) {
             return $filter->key === "date";
         })->push(new Filter(
-            key: "created_at",
-            label: __('Date'),
+            key: $key ?: 'created_at',
+            label: $label ?: __('Date'),
             type: 'date'
         ))->values();
 

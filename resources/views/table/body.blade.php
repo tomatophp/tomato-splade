@@ -9,7 +9,7 @@
         >
             @if($hasBulkActions = $table->hasBulkActions())
                 @php $itemPrimaryKey = $table->findPrimaryKey($item) @endphp
-                <td width="64" class="text-xs px-6 py-4 align-middle" :class="{'bg-gray-200 dark:bg-gray-600': table.itemIsSelected(@js($itemPrimaryKey))}">
+                <td width="64" class="text-xs px-6 py-4 border-b border-gray-200 dark:border-gray-500" :class="{'bg-gray-200 dark:bg-gray-600': table.itemIsSelected(@js($itemPrimaryKey))}">
                     <div class="h-full">
                         <input
                             @change="(e) => table.setSelectedItem(@js($itemPrimaryKey), e.target.checked)"
@@ -25,20 +25,40 @@
             @endif
 
             @foreach($table->columns() as $column)
-                <td
-                    @if($table->rowLinks->has($itemKey))
-                        @click="(event) => table.visit(@js($table->rowLinks->get($itemKey)), @js($table->rowLinkType), event)"
-                    @endif
-                    v-show="table.columnIsVisible(@js($column->key))"
-                    :class="{'bg-gray-200 dark:bg-gray-600': table.itemIsSelected(@js($itemPrimaryKey??null))}"
-                    class="whitespace-nowrap align-middle text-sm @if($loop->first && $hasBulkActions) pr-6 @else px-6 @endif py-4 @if($column->highlight) text-gray-900 dark:text-white font-medium text-left rtl:text-right @else text-gray-500 dark:text-gray-200 @endif @if($table->rowLinks->has($itemKey)) cursor-pointer @endif {{ $column->classes }}"
-                >
-                    @isset(${'spladeTableCell' . $column->keyHash()})
-                        {{ ${'spladeTableCell' . $column->keyHash()}($item, $itemKey) }}
-                    @else
-                        {!! nl2br(e($getColumnDataFromItem($item, $column))) !!}
-                    @endisset
-                </td>
+                @if($column->key === 'actions')
+                    <td
+                        @if($table->rowLinks->has($itemKey))
+                            @click="(event) => table.visit(@js($table->rowLinks->get($itemKey)), @js($table->rowLinkType), event)"
+                        @endif
+                        v-show="table.columnIsVisible(@js($column->key))"
+                        :class="{
+                            'bg-gray-200 dark:bg-gray-600': table.itemIsSelected(@js($itemPrimaryKey??null))}
+                        "
+                        class="table_action md:sticky w-0 last:before:hidden md:last:before:block md:last:before:h-full md:last:before:top-0 md:ltr:last:before:left-[-15px] md:rtl:last:before:right-[-15px] md:last:before:absolute md:last:before:w-[15px] md:ltr:last:before:shadow-[inset_-15px_0_15px_-17px_rgba(0,0,0,0.2)] md:rtl:last:before:shadow-[inset_15px_0_15px_-17px_rgba(0,0,0,0.2)] rtl:border-r border-l border-b border-gray-200 dark:border-gray-500 rtl:left-0 ltr:right-0 bg-white dark:bg-gray-800 table_action_hover whitespace-nowrap ltr:capitalize text-sm @if($loop->first && $hasBulkActions) pr-6 @else px-6 @endif py-4 @if($column->highlight) text-gray-900 dark:text-white font-medium text-left rtl:text-right @else text-gray-500 dark:text-gray-200 @endif @if($table->rowLinks->has($itemKey)) cursor-pointer @endif {{ $column->classes }}"
+                    >
+                        @isset(${'spladeTableCell' . $column->keyHash()})
+                            {{ ${'spladeTableCell' . $column->keyHash()}($item, $itemKey) }}
+                        @else
+                            {!! nl2br(e($getColumnDataFromItem($item, $column))) !!}
+                        @endisset
+                    </td>
+                @else
+                    <td
+                        @if($table->rowLinks->has($itemKey))
+                            @click="(event) => table.visit(@js($table->rowLinks->get($itemKey)), @js($table->rowLinkType), event)"
+                        @endif
+                        v-show="table.columnIsVisible(@js($column->key))"
+                        :class="{'bg-gray-200 dark:bg-gray-600': table.itemIsSelected(@js($itemPrimaryKey??null))}"
+                        class="border-b border-gray-200 dark:border-gray-500 table_action_hover whitespace-nowrap ltr:capitalize text-sm   @if($loop->first && $hasBulkActions) pr-6 @else px-6 @endif py-4 @if($column->highlight) text-gray-900 dark:text-white font-medium text-left rtl:text-right @else text-gray-500 dark:text-gray-200 @endif @if($table->rowLinks->has($itemKey)) cursor-pointer @endif {{ $column->classes }}"
+                    >
+                        @isset(${'spladeTableCell' . $column->keyHash()})
+                            {{ ${'spladeTableCell' . $column->keyHash()}($item, $itemKey) }}
+                        @else
+                            {!! nl2br(e($getColumnDataFromItem($item, $column))) !!}
+                        @endisset
+                    </td>
+                @endif
+
             @endforeach
         </tr>
     @empty

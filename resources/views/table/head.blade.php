@@ -1,7 +1,7 @@
 <thead class="bg-gray-50 dark:bg-gray-700">
     <tr>
         @if($hasBulkActions = $table->hasBulkActions())
-            <th width="64" class="px-6 py-3 text-xs">
+            <th width="64" class="text-xs px-6 py-4 border-b border-gray-200 dark:border-gray-500">
                 @include('splade::table.select-rows-dropdown')
             </th>
         @endif
@@ -9,7 +9,7 @@
         @foreach($table->columns() as $column)
             <th
                 v-show="table.columnIsVisible(@js($column->key))"
-                class="whitespace-nowrap @if($loop->first && $hasBulkActions) pr-6 @else px-6 @endif py-3 text-left rtl:text-right text-xs font-medium tracking-wide text-gray-500 dark:text-white {{ $column->classes }}"
+                class="md:last:sticky last:before:hidden md:last:before:block md:last:before:h-full md:last:before:top-0 md:ltr:last:before:left-[-15px] md:rtl:last:before:right-[-15px] md:last:before:absolute md:last:before:w-[15px] md:ltr:last:before:shadow-[inset_-15px_0_15px_-17px_rgba(0,0,0,0.2)] md:rtl:last:before:shadow-[inset_15px_0_15px_-17px_rgba(0,0,0,0.2)] rtl:last:border-r ltr:last:border-l border-b border-gray-200 dark:border-gray-500 ltr:last:right-0 rtl:last:left-0 last:bg-gray-50 last:dark:bg-gray-700 @if($loop->first && $hasBulkActions) pr-6 @else px-6 @endif py-3 text-left rtl:text-right text-xs font-medium tracking-wide text-gray-500 dark:text-white {{ $column->classes }}"
             >
                 @if($column->sortable)
                     <Link keep-modal dusk="sort-{{ $column->key }}" href="{{ $sortBy($column) }}">

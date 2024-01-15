@@ -224,7 +224,8 @@ class SpladeQueryBuilder extends SpladeTable
             );
         }
 
-        if (!method_exists($this->builder->getModel(), 'scopeOrderByLeftPowerJoins')) {
+
+        if (!in_array(PowerJoins::class, class_uses_recursive(get_class($this->builder->getModel())))) {
             throw new PowerJoinsException(
                 "To order the query using a column from a relationship, make sure the Model uses the 'PowerJoins' trait."
             );
@@ -251,7 +252,7 @@ class SpladeQueryBuilder extends SpladeTable
         $this->filters()->filter->hasValue()->each(
             function (Filter $filter){
                 if($filter->type === 'date'){
-                    $exploadDateRange = explode(' to ', request()->get('filter')['created_at']);
+                    $exploadDateRange = explode(' to ', request()->get('filter')[$filter->key]);
                     $from = "";
                     $to = "";
                     if(Carbon::parse($exploadDateRange[0])->isAfter(Carbon::parse($exploadDateRange[1]))){
@@ -262,7 +263,7 @@ class SpladeQueryBuilder extends SpladeTable
                         $from = Carbon::parse($exploadDateRange[0])->toDateString();
                         $to = Carbon::parse($exploadDateRange[1])->toDateString();
                     }
-                    $this->builder->whereBetween(\DB::raw('DATE(created_at)') ,[$from,$to]);
+                    $this->builder->whereBetween(\DB::raw('DATE('.$filter->key.')') ,[$from,$to]);
                 }
                 else {
                     return $this->applyConstraint([$filter->key => SearchInput::EXACT], $filter->value);
