@@ -28,6 +28,7 @@ trait HasFilters
         bool $mutli=false,
         string|int|null $paginated=null,
         string $queryBy='search',
+        bool $applyQuery=true
     ): self {
         $this->filters = $this->filters->reject(function (Filter $filter) use ($key) {
             return $filter->key === $key;
@@ -46,6 +47,7 @@ trait HasFilters
             mutli: $mutli,
             paginated: $paginated,
             queryBy: $queryBy,
+            applyQuery: $applyQuery
         ))->values();
 
         return $this;
@@ -60,13 +62,15 @@ trait HasFilters
         string $key,
         string $label = null,
         string $defaultValue = null,
+        bool $applyQuery=true
     ): self {
         $this->filters = $this->filters->reject(function (Filter $filter) use ($key) {
             return $filter->key === $key;
         })->push(new Filter(
             key: $key,
             label: $label ?: Str::headline($key),
-            type: 'bool'
+            type: 'bool',
+            applyQuery: $applyQuery
         ))->values();
 
         return $this;
@@ -78,13 +82,14 @@ trait HasFilters
      *
      * @return $this
      */
-    public function dateFilter(string $key =null, string $label =null): self {
+    public function dateFilter(string $key =null, string $label =null, bool $applyQuery=true): self {
         $this->filters = $this->filters->reject(function (Filter $filter) {
             return $filter->key === "date";
         })->push(new Filter(
             key: $key ?: 'created_at',
             label: $label ?: __('Date'),
-            type: 'date'
+            type: 'date',
+            applyQuery: $applyQuery
         ))->values();
 
         return $this;

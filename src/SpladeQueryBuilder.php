@@ -251,22 +251,24 @@ class SpladeQueryBuilder extends SpladeTable
 
         $this->filters()->filter->hasValue()->each(
             function (Filter $filter){
-                if($filter->type === 'date'){
-                    $exploadDateRange = explode(' to ', request()->get('filter')[$filter->key]);
-                    $from = "";
-                    $to = "";
-                    if(Carbon::parse($exploadDateRange[0])->isAfter(Carbon::parse($exploadDateRange[1]))){
-                        $from = Carbon::parse($exploadDateRange[1])->toDateString();
-                        $to = Carbon::parse($exploadDateRange[0])->toDateString();
+                if($filter->applyQuery){
+                    if($filter->type === 'date'){
+                        $exploadDateRange = explode(' to ', request()->get('filter')[$filter->key]);
+                        $from = "";
+                        $to = "";
+                        if(Carbon::parse($exploadDateRange[0])->isAfter(Carbon::parse($exploadDateRange[1]))){
+                            $from = Carbon::parse($exploadDateRange[1])->toDateString();
+                            $to = Carbon::parse($exploadDateRange[0])->toDateString();
+                        }
+                        else {
+                            $from = Carbon::parse($exploadDateRange[0])->toDateString();
+                            $to = Carbon::parse($exploadDateRange[1])->toDateString();
+                        }
+                        $this->builder->whereBetween(\DB::raw('DATE('.$filter->key.')') ,[$from,$to]);
                     }
                     else {
-                        $from = Carbon::parse($exploadDateRange[0])->toDateString();
-                        $to = Carbon::parse($exploadDateRange[1])->toDateString();
+                        return $this->applyConstraint([$filter->key => SearchInput::EXACT], $filter->value);
                     }
-                    $this->builder->whereBetween(\DB::raw('DATE('.$filter->key.')') ,[$from,$to]);
-                }
-                else {
-                    return $this->applyConstraint([$filter->key => SearchInput::EXACT], $filter->value);
                 }
             }
         );

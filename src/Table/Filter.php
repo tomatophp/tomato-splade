@@ -25,6 +25,7 @@ class Filter implements Arrayable
         public bool $mutli=false,
         public string|int|null $paginated=null,
         public string $queryBy='search',
+        public bool $applyQuery=true,
     ) {
     }
 
@@ -48,6 +49,7 @@ class Filter implements Arrayable
             $this->mutli,
             $this->paginated,
             $this->queryBy,
+            $this->applyQuery,
         );
     }
 
@@ -94,6 +96,7 @@ class Filter implements Arrayable
             'mutli'          => $this->mutli,
             'paginated'          => $this->paginated,
             'queryBy'          => $this->queryBy,
+            'applyQuery'          => $this->applyQuery,
         ];
     }
 }
