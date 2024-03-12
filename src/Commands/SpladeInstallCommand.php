@@ -23,10 +23,6 @@ class SpladeInstallCommand extends Command
      */
     public function handle(): int
     {
-        $this->installRouteMiddleware();
-
-        $this->installExceptionHandler();
-
         // Tailwind Configuration...
         copy(__DIR__ . '/../../stubs/postcss.config.js', base_path('postcss.config.js'));
 
