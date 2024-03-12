@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 class TableWrapper extends Component
 {
     public function __construct(
-        public bool $customBody = false,
+        public bool|null $customBody = false,
     ) {
     }
     /**
