@@ -340,7 +340,7 @@ class SpladeCore
                 if ($e instanceof AuthenticationException) {
                     // Still use request()->guest() so the "indented" URL is preserved.
                     return Splade::redirectAway(
-                        redirect()->guest($e->redirectTo() ?? route('login'))->getTargetUrl()
+                        redirect()->guest($e->redirectTo($request) ?? route('login'))->getTargetUrl()
                     );
                 }
 
