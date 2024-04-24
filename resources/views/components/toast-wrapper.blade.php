@@ -5,7 +5,7 @@
                 animation="opacity"
                 appear
                 show="toasts.hasBackdrop"
-                class="fixed z-30 inset-0 bg-black/75 dark:bg-gray-800"
+                class="fixed z-30 inset-0 bg-black/75 dark:bg-zinc-800"
         />
 
         <div class="fixed z-40 inset-0 grid grid-cols-3 grid-flow-row-3 pointer-events-none mt-16">

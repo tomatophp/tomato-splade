@@ -24,7 +24,7 @@
             <x-splade-component is="table-wrapper" :customBody="$customBody">
 
             @if($customBody)
-                  <div v-if="table.hasSelectedItems" class="bg-gray-700 text-gray-100 dark:bg-gray-900 dark:text-gray-100  border border-gray-600 dark:border-gray-800 rounded-lg mb-3">
+                  <div v-if="table.hasSelectedItems" class="bg-zinc-700 text-zinc-100 dark:bg-zinc-900 dark:text-zinc-100  border border-zinc-600 dark:border-zinc-800 rounded-lg mb-3">
                         <div colspan="{{ $table->columns()->count() + 1 }}">
                             <div class="flex justify-start gap-4 p-4">
                                 <div class="flex flex-col items-center justify-center font-medium">
@@ -83,7 +83,7 @@
                     </div>
                   @include($customBodyView)
                 @else
-                    <table class="border-separate border-spacing-0 min-w-full divide-y divide-gray-200 dark:divide-gray-600 bg-white dark:bg-gray-700">
+                    <table class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-600 bg-white dark:bg-zinc-700">
                         @unless($headless)
                             @isset($head)
                                 {{ $head }}
@@ -92,7 +92,7 @@
                             @endisset
                         @endunless
 
-                        <tr v-if="table.hasSelectedItems" class="bg-gray-700 dark:bg-gray-900 dark:bg-gray-200 text-gray-100">
+                        <tr v-if="table.hasSelectedItems" class="bg-zinc-700 dark:bg-zinc-900 dark:bg-zinc-200 text-zinc-100">
                             <td colspan="{{ $table->columns()->count() + 1 }}">
                                 <div class="flex justify-start gap-4 p-4">
                                     <div class="flex flex-col items-center justify-center font-medium">

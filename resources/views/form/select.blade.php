@@ -20,7 +20,7 @@
             <div class="relative">
                 <div v-bind:class="{ 'opacity-50': select.loading }">
                     <select {{ $attributes->except(['v-if', 'v-show', 'class'])->class([
-                        'block w-full dark:bg-gray-800 border  border-gray-200 dark:border-gray-700 rounded-md  shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:opacity-50',
+                        'block w-full dark:bg-zinc-800 border  border-zinc-200 dark:border-zinc-700 rounded-md  shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:opacity-50',
                     ])->merge([
                         'multiple' => $multiple,
                         'name' => $name,

@@ -37,7 +37,7 @@
                 />
             @else
                 <a @submit.prevent
-                   class="inline-block py-2 px-3 rounded-md border border-gray-200 shadow-sm bg-white hover:bg-gray-100 relative cursor-pointer font-medium text-gray-700 text-sm focus:outline-none focus:ring focus:ring-opacity-50 focus:border-primary-300 focus:ring-primary-200 text-center">
+                   class="inline-block py-2 px-3 rounded-md border border-zinc-200 shadow-sm bg-white hover:bg-zinc-100 relative cursor-pointer font-medium text-zinc-700 text-sm focus:outline-none focus:ring focus:ring-opacity-50 focus:border-primary-300 focus:ring-primary-200 text-center">
                     @if(trim($slot))
                         {{ $slot }}
                     @else

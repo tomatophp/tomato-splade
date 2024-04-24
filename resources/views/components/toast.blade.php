@@ -2,7 +2,7 @@
     <x-splade-component is="transition" appear show="toast.show">
         <x-splade-component is="transition" child after-leave="toast.emitDismiss">
             <div @class([
-                'px-4 py-3 pointer-events-auto shadow-md min-w-[340px] border rounded-md shadow-sm bg-white dark:bg-gray-900 dark:border-gray-800 border-gray-200'
+                'px-4 py-3 pointer-events-auto shadow-md min-w-[340px] border rounded-md shadow-sm bg-white dark:bg-zinc-900 dark:border-zinc-800 border-zinc-200'
                  ])>
                 <div class="flex items-center justify-between gap-8">
                     <div class="flex items-center gap-2">
@@ -19,7 +19,7 @@
                         </div>
                         <div class="break-words flex flex-col gap-[6px] items-start">
                             <h3 @class([
-                                'text-sm font-medium text-gray-950 dark:text-white',
+                                'text-sm font-medium text-zinc-950 dark:text-white',
                             ])>
                                 {!! nl2br(e($title ?: $message)) !!}
                             </h3>

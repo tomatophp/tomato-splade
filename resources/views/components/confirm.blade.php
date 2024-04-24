@@ -19,21 +19,21 @@
                 <div class="fixed z-40 inset-0 overflow-y-auto">
                     <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
                         <x-splade-component is="transition" child animation="fade" after-leave="confirm.emitClose">
-                            <x-splade-component is="dialog" panel class="relative bg-white dark:bg-gray-700 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full sm:p-6">
+                            <x-splade-component is="dialog" panel class="relative bg-white dark:bg-zinc-700 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full sm:p-6">
                                 <div class="sm:flex sm:items-start">
                                     <div class="text-center sm:mt-0 sm:text-left">
-                                        <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white" v-text="confirm.title" />
+                                        <h3 class="text-lg leading-6 font-medium text-zinc-900 dark:text-white" v-text="confirm.title" />
                                         <div class="mt-2" v-if="confirm.text">
-                                            <p class="text-sm text-gray-500 dark:text-white" v-text="confirm.text" />
+                                            <p class="text-sm text-zinc-500 dark:text-white" v-text="confirm.text" />
                                         </div>
 
-                                        <div class="mt-2 flex rounded-md border border-gray-300 shadow-sm" v-if="confirm.confirmPassword">
+                                        <div class="mt-2 flex rounded-md border border-zinc-300 shadow-sm" v-if="confirm.confirmPassword">
                                             <input
                                                 type="password"
                                                 name="password"
                                                 placeholder="Password"
                                                 v-on:change="confirm.setPassword($event.target.value)"
-                                                class="rounded-md block w-full border-0 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50 disabled:bg-gray-50 disabled:cursor-not-allowed"
+                                                class="rounded-md block w-full border-0 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:opacity-50 disabled:bg-zinc-50 disabled:cursor-not-allowed"
                                                 @keyup.enter="confirm.confirm"
                                                 :disabled="confirm.submitting"
                                             />
@@ -59,7 +59,7 @@
                                     <button
                                         dusk="splade-confirm-cancel"
                                         type="button"
-                                        class="mt-3  w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white dark:bg-gray-600 dark:border-gray-500 dark:text-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 ltr:sm:ml-3 rtl:sm:mr-3 sm:w-auto sm:text-sm"
+                                        class="mt-3  w-full inline-flex justify-center rounded-md border border-zinc-300 px-4 py-2 bg-white dark:bg-zinc-600 dark:border-zinc-500 dark:text-white text-base font-medium text-zinc-700 shadow-sm hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 ltr:sm:ml-3 rtl:sm:mr-3 sm:w-auto sm:text-sm"
                                         @click.prevent="confirm.cancel"
                                         :disabled="confirm.submitting"
                                         v-text="confirm.cancelButton"
