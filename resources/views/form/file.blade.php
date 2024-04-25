@@ -22,6 +22,7 @@
     v-on:stop-uploading="form.$stopUploading"
     :dusk="@js($attributes->get('dusk'))"
     {{ $attributes->only(['v-if', 'v-show', 'class']) }}
+
 >
     <template #default="{!! $scope !!}">
         <label class="block">

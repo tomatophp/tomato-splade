@@ -1,4 +1,4 @@
-<SpladeDropdown class="w-full" {{ $attributes->except('class')
+<SpladeDropdown @if($full) class="w-full" @endif {{ $attributes->except('class')
     ->mergeVueBinding(':inline', $inline)
     ->mergeVueBinding(':teleport', $teleport)
     ->mergeVueBinding(':close-on-click', $closeOnClick)
