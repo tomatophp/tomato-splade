@@ -5,11 +5,10 @@
         </svg>
     </x-slot:button>
 
-    <div class="min-w-max bg-white dark:bg-zinc-700  overflow-hidden">
+    <div class="min-w-max">
         <div class="flex flex-col">
-
             @if($table->hasExports())
-                <h3 class="text-xs uppercase tracking-wide bg-zinc-100 dark:bg-zinc-800 px-4 py-2 border-b border-zinc-200 dark:border-zinc-600">
+                <h3 class="text-xs uppercase rounded-t tracking-wide bg-zinc-100  dark:bg-zinc-700 px-4 py-2 border-b border-zinc-200 dark:border-zinc-600">
                     {{ __('Export results') }}
                 </h3>
             @endif
@@ -17,7 +16,7 @@
             @foreach($table->getExports() as $export)
                 <a
                     download
-                    class="text-left w-full px-4 py-2 text-sm text-zinc-700 dark:text-white dark:hover:bg-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 font-normal"
+                    class="text-left w-full px-4 py-2 text-sm text-zinc-700 dark:text-white hover:text-zinc-400 hover:text-zinc-900 font-normal"
                     href="{{ $export->getUrl() }}"
                     dusk="action.{{ $export->getSlug() }}">
                     {{ $export->label }}
