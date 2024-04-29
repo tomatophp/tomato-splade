@@ -11,7 +11,7 @@
         @endif
 
         <button
-            class="text-left w-full px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900"
+            class="text-left w-full px-4 py-2 text-sm text-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-400 dark:hover:bg-zinc-900 hover:bg-zinc-100 hover:text-zinc-900"
             @click.prevent="table.showSearchInput(@js($searchInput->key)); dropdown.hide()"
             dusk="add-search-row-{{ $searchInput->key }}">
             {{ $searchInput->label }}
